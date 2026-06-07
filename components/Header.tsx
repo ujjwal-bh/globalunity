@@ -49,11 +49,11 @@ export default function Header() {
               <Phone className="w-3 h-3" /> +1 (555) 123-4567
             </span>
             <span className="flex items-center gap-1.5 opacity-90">
-              <Mail className="w-3 h-3" /> info@eduvisa.com
+              <Mail className="w-3 h-3" /> admin@globalunityeducation.com
             </span>
           </div>
           <span className="opacity-80 tracking-wide">
-            🌍 Trusted by 5,000+ students across 25 countries
+            🌍 Providing visa services for 10+ countries.
           </span>
         </div>
       </div>

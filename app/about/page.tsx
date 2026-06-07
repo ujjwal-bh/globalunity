@@ -126,8 +126,8 @@ export default function About() {
               </div>
               {/* Floating secondary badge */}
               <div className="absolute -top-4 -right-4 bg-secondary text-white rounded-2xl px-5 py-3 shadow-lg">
-                <p className="text-2xl font-bold leading-none">5K+</p>
-                <p className="text-xs opacity-80 font-medium">Students</p>
+                <p className="text-2xl font-bold leading-none">10+</p>
+                <p className="text-xs opacity-80 font-medium">Countries</p>
               </div>
             </div>
           </div>

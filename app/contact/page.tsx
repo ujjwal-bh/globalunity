@@ -10,7 +10,7 @@ const contactInfo = [
     icon: Phone,
     title: "Phone",
     value: "+1 (555) 123-4567",
-    detail: "Monday to Friday, 9 AM – 6 PM",
+    detail: "Monday to Friday, 9 AM - 6 PM",
     href: "tel:+15551234567",
   },
   {
@@ -55,6 +55,8 @@ type FormState = {
 
 export default function Contact() {
   const { country } = useLocation();
+
+  console.log(country , 'Country');
 
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -402,7 +404,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-bold text-foreground text-sm">Average Response Time</p>
-                <p className="text-muted-foreground text-xs mt-0.5">We reply within <span className="text-primary font-semibold">2–4 hours</span> on business days</p>
+                <p className="text-muted-foreground text-xs mt-0.5">We reply within <span className="text-primary font-semibold">2-4 hours</span> on business days</p>
               </div>
             </div>
           </div>

@@ -36,12 +36,12 @@ export default function Footer() {
               <h4 className="font-bold text-white mb-5 text-sm uppercase tracking-widest">Contact</h4>
               <ul className="space-y-3 text-sm text-white/60">
                 <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-primary shrink-0" /> +1 (555) 123-4567</li>
-                <li className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-primary shrink-0" /> info@eduvisa.com</li>
+                <li className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-primary shrink-0" /> admin@globalunityeducation.com</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-white/10 pt-8 text-center">
-            <p className="text-white/50 text-sm">© 2024 Global Unity Education. All rights reserved.</p>
+            <p className="text-white/50 text-sm">© 2026 Global Unity Education. All rights reserved.</p>
           </div>
         </div>
       </footer>

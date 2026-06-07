@@ -5,46 +5,40 @@ import { Star, ArrowLeft, ArrowRight } from "lucide-react";
 const testimonials = [
   {
     name: "Sarah Johnson",
-    role: "Harvard University",
+    country: "Australia",
     image: "https://images.pexels.com/photos/7752788/pexels-photo-7752788.jpeg",
-    text: "EduVisa's guidance was instrumental in my journey to Harvard. The team's personalized approach and expertise made the entire application process smooth and stress-free.",
+    text: "GlobalUnity's guidance was instrumental in my journey to Australia. The team's personalized approach and expertise made the entire application process smooth and stress-free.",
     rating: 5,
   },
   {
     name: "Rajesh Patel",
-    role: "Oxford University",
+    country: "UK",
     image: "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg",
-    text: "I couldn't have gotten into Oxford without EduVisa's support. Their visa consultation was particularly helpful and saved me months of confusion.",
+    text: "I couldn't have gotten into my university in UK without GlobalUnity's support. Their visa consultation was particularly helpful and saved me months of confusion.",
     rating: 5,
   },
   {
     name: "Sophia Chen",
-    role: "MIT",
+    country: "Japan",
     image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg",
-    text: "The consultants at EduVisa understood my goals perfectly and provided tailored advice. I'm now thriving at MIT thanks to their expert guidance.",
+    text: "The consultants at GlobalUnity's understood my goals perfectly and provided tailored advice. I'm now thriving at Japan thanks to their expert guidance.",
     rating: 5,
   },
   {
     name: "Amara Osei",
-    role: "Stanford University",
+    country: "Australia",
     image: "https://images.pexels.com/photos/7752788/pexels-photo-7752788.jpeg",
-    text: "From SOP reviews to interview prep, EduVisa covered every detail. Getting into Stanford felt impossible before I met their team.",
+    text: "From SOP reviews to interview prep, GlobalUnity covered every detail. Getting into Australia felt impossible before I met their team.",
     rating: 5,
   },
   {
     name: "Lucas Ferreira",
-    role: "University of Toronto",
+    country: "Canada",
     image: "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg",
-    text: "The visa guidance alone was worth every penny. EduVisa made my move to Canada seamless and stress-free from day one.",
+    text: "The visa guidance alone was worth every penny. GlobalUnity made my move to Canada seamless and stress-free from day one.",
     rating: 5,
   },
-  {
-    name: "Priya Sharma",
-    role: "London School of Economics",
-    image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg",
-    text: "I was overwhelmed by the LSE application process. EduVisa broke it down step by step and I received my offer letter within months.",
-    rating: 5,
-  },
+ 
 ];
 
 // How many cards to show at each breakpoint
@@ -169,7 +163,7 @@ export default function TestimonialsCarousel() {
                   />
                   <div>
                     <h3 className="font-bold text-foreground text-sm">{t.name}</h3>
-                    <p className="text-xs text-primary font-semibold">{t.role}</p>
+                    <p className="text-xs text-primary font-semibold">{t.country}</p>
                   </div>
                 </div>
               </div>

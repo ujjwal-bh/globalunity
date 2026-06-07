@@ -215,7 +215,7 @@ export default function Home() {
               Our Advantages
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-              Why Choose EduVisa?
+              Why Choose GlobalUnity Education?
             </h2>
             <div className="w-12 h-1 bg-primary rounded-full mx-auto mb-5" />
             <p className="text-lg text-muted-foreground">
