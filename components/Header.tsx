@@ -121,7 +121,7 @@ export default function Header() {
             <button
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-muted transition-colors bg-primary/50"
+              className="md:hidden z-100 flex items-center justify-center w-10 h-10 rounded-xl hover:bg-muted transition-colors bg-primary/50"
             >
               <Menu className="w-5 h-5 text-foreground" />
             </button>
