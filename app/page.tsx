@@ -15,43 +15,19 @@ import {
 import HeroCarousel from "@/components/HeroCarousel";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import { useLocation } from "./provider/LocationContext";
+import { getData } from "@/lib/getData";
+import { useRouter } from "next/dist/client/components/navigation";
 
 export default function Home() {
   const {country, city, status} = useLocation();
+  const router = useRouter();
+  const {aboutus, services} = getData();
   console.log(country, city, status, "country city")
-  const services = [
-    {
-      icon: Globe,
-      title: "University Selection",
-      description:
-        "Find the perfect university match based on your goals, budget, and academic profile.",
-    },
-    {
-      icon: BookOpen,
-      title: "Application Support",
-      description:
-        "Expert guidance through the entire application process with personalized assistance.",
-    },
-    {
-      icon: Award,
-      title: "Visa Consultation",
-      description:
-        "Navigate visa requirements and documentation with our experienced consultants.",
-    },
-    {
-      icon: Users,
-      title: "Career Guidance",
-      description:
-        "Post-study career planning and placement assistance in your desired field.",
-    },
-  ];
 
-  const stats = [
-    { number: "5,000+", label: "Students Placed" },
-    { number: "150+", label: "Partner Universities" },
-    { number: "98%", label: "Success Rate" },
-    { number: "25+", label: "Countries" },
-  ];
+  const handleservicesClick = (id: string) => {
+    router.push(`/services/${id}`);
+  }
+
 
   if (status === 'loading') return <div>Loading</div>
 
@@ -163,8 +139,15 @@ export default function Home() {
               </h2>
               <div className="w-12 h-1 bg-primary rounded-full mb-6" />
             </div>
+            {
+              aboutus.map((paragraph, index) => (
+                <p key={index} className="text-lg text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))
+            }
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            {/* <p className="text-lg text-muted-foreground leading-relaxed">
               EduVisa is immensely proud to have a team of dedicated education
               professionals from diverse walks of life. Our team has rich and
               global experience in consulting, education, training and
@@ -175,7 +158,7 @@ export default function Home() {
               quality education to all students globally. Our professional and
               talented team offers balanced quality services than most of its
               competitors.
-            </p>
+            </p> */}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
               {[
@@ -346,27 +329,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white border-b border-border/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border/30 rounded-2xl overflow-hidden shadow-sm">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="bg-white text-center px-6 py-10 flex flex-col items-center gap-1"
-              >
-                <p className="text-4xl sm:text-5xl font-bold text-primary">
-                  {stat.number}
-                </p>
-                <div className="w-8 h-0.5 bg-primary/30 rounded-full my-2" />
-                <p className="text-sm text-muted-foreground font-medium">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Services Section */}
       <section className="py-24 bg-white">
@@ -392,6 +354,7 @@ export default function Home() {
               return (
                 <div
                   key={index}
+                  onClick={()=> handleservicesClick(service.id)}
                   className={`group relative p-7 rounded-2xl bg-white border border-border/60 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden flex flex-col gap-4`}
                 >
                   {/* Top accent line */}
@@ -453,147 +416,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-linear-to-b from-foreground to-foreground/95 text-white pt-20 pb-10 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            <div>
-              <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
-                <Globe className="w-5 h-5 text-secondary" />
-                Global Unity
-              </h4>
-              <p className="text-white/70 text-sm leading-relaxed">
-                Your trusted partner in global education and international
-                student success.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-6">Navigation</h4>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-6">Services</h4>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Link
-                    href="/services"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    University Selection
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    Application Support
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/visas"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    Visa Guidance
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services"
-                    className="text-white/60 hover:text-white transition-colors font-medium"
-                  >
-                    Career Planning
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-6">Get in Touch</h4>
-              <ul className="space-y-3 text-sm text-white/70">
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-secondary shrink-0" />
-                  <span>+1 (555) 123-4567</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-secondary shrink-0" />
-                  <span>info@eduvisa.com</span>
-                </li>
-                <li className="pt-2">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 bg-secondary/20 hover:bg-secondary/30 text-secondary px-4 py-2 rounded-lg transition-colors font-semibold text-sm"
-                  >
-                    Contact Us
-                    <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 pt-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <p className="text-white/60 text-sm">
-                © 2024 Global Unity Education. All rights reserved.
-              </p>
-              <div className="flex items-center gap-6">
-                <span className="text-white/60 text-sm font-medium">
-                  Follow Us
-                </span>
-                <div className="flex gap-4">
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-secondary/20 flex items-center justify-center transition-colors"
-                  >
-                    <span className="text-white text-sm font-bold">f</span>
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-secondary/20 flex items-center justify-center transition-colors"
-                  >
-                    <span className="text-white text-sm font-bold">in</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }

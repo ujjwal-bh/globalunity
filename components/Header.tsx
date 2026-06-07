@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, Globe, Phone, Mail, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, Mail, ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { getData } from "@/lib/getData";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -16,6 +17,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const data = getData();
 
   // Elevate header on scroll
   useEffect(() => {
@@ -27,16 +29,20 @@ export default function Header() {
   // Lock body scroll when drawer is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   // Close drawer on route change
-  useEffect(() => { setIsOpen(false); }, [pathname]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <>
       {/* ── Top announcement bar ── */}
-      <div className="hidden sm:block bg-primary text-white text-xs py-2 px-4">
+      <div className="hidden sm:block bg-primary text-white text-xs py-4 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 opacity-90">
@@ -80,7 +86,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 group ${
+                    className={`relative px-4 py-2 text-sm font-semibold font-medium rounded-lg transition-all duration-200 group ${
                       isActive
                         ? "text-primary"
                         : "text-foreground/70 hover:text-foreground"
@@ -90,7 +96,9 @@ export default function Header() {
                     {/* Active underline */}
                     <span
                       className={`absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-primary transition-all duration-300 ${
-                        isActive ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100"
+                        isActive
+                          ? "opacity-100 scale-x-100"
+                          : "opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100"
                       }`}
                     />
                   </Link>
@@ -113,7 +121,7 @@ export default function Header() {
             <button
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-muted transition-colors"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-muted transition-colors bg-primary/50"
             >
               <Menu className="w-5 h-5 text-foreground" />
             </button>
@@ -121,14 +129,18 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ── Mobile drawer backdrop ── */}
-      <div
-        onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-        aria-hidden="true"
-      />
+      {/* ── Mobile drawer backdrop ──
+           FIX: Conditionally rendered instead of opacity toggle.
+           backdrop-blur combined with pointer-events:none can still capture
+           touch events on real mobile browsers (Safari/Chrome on iOS & Android),
+           so we mount/unmount it entirely instead. ── */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm md:hidden"
+          aria-hidden="true"
+        />
+      )}
 
       {/* ── Mobile drawer panel ── */}
       <div
@@ -191,10 +203,16 @@ export default function Header() {
           </Link>
 
           <div className="flex flex-col gap-2 pt-2">
-            <a href="tel:+15551234567" className="flex items-center gap-2.5 text-xs text-muted-foreground hover:text-primary transition-colors px-1">
+            <a
+              href="tel:+15551234567"
+              className="flex items-center gap-2.5 text-xs text-muted-foreground hover:text-primary transition-colors px-1"
+            >
               <Phone className="w-3.5 h-3.5" /> +1 (555) 123-4567
             </a>
-            <a href="mailto:info@eduvisa.com" className="flex items-center gap-2.5 text-xs text-muted-foreground hover:text-primary transition-colors px-1">
+            <a
+              href="mailto:info@eduvisa.com"
+              className="flex items-center gap-2.5 text-xs text-muted-foreground hover:text-primary transition-colors px-1"
+            >
               <Mail className="w-3.5 h-3.5" /> info@eduvisa.com
             </a>
           </div>
